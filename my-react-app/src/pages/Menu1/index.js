@@ -1,11 +1,11 @@
 import { Fragment } from "react";
 
-const Home = () => {
+function Menu1() {
   return (
     <Fragment>
-      <h1>Home</h1>
+      <h1>Menu1</h1>
     </Fragment>
   );
-};
+}
 
-export default Home;
+export default Menu1;

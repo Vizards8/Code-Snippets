@@ -1,11 +1,11 @@
 import { Fragment } from "react";
 
-const Home = () => {
+function Register() {
   return (
     <Fragment>
-      <h1>Home</h1>
+      <h1>Register</h1>
     </Fragment>
   );
-};
+}
 
-export default Home;
+export default Register;

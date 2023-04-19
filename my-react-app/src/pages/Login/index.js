@@ -1,11 +1,11 @@
 import { Fragment } from "react";
 
-const Home = () => {
+function Login() {
   return (
     <Fragment>
-      <h1>Home</h1>
+      <h1>Login</h1>
     </Fragment>
   );
-};
+}
 
-export default Home;
+export default Login;
