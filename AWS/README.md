@@ -16,6 +16,12 @@
 * Elastic IPs: 记得定时 release
 
 ## Connect to EC2:
+* Connect: 
+  * Instance -> Connect -> SSH client
+  * `ssh -i aws.pem admin@ec2-44-204-85-207.compute-1.amazonaws.com`
+  * windows 使用key-pair操作，需要改权限，比较麻烦
+  * 建议add password authentication，使用账号密码连接
+
 * WARNING: "Permissions for 'xxxx.pem' are too open."
   * Linux: `chmod 400 aws.pem`
   * Windows:
@@ -23,10 +29,6 @@
     * 点击安全 -> 编辑 -> 添加 -> 高级 -> 立即查找 -> Neng Zhou
      <!-- ![img](/Images/Permissions_too_open.png) -->
      <img src="/Images/Permissions_too_open.png" width="400" >
-
-* Connect: 
-  * Instance -> Connect -> SSH client
-  * `ssh -i aws.pem admin@ec2-44-204-85-207.compute-1.amazonaws.com`
 
 * Add password authentication:
   
@@ -65,7 +67,8 @@
   ```
 
 ### Nginx: 
-* 若服务器不可操作，只开放了80端口
+* 若服务器不可操作，只开放了80端口，通过 Nginx 反向代理
+* 原理：监听 80 端口，如有请求跳转到 proxy_pass 对应的服务器上
 * install: 
 
   ```bash
@@ -106,12 +109,9 @@
   sudo ufw allow 'Nginx Full'
   ```
 
-* 原理：
-  * 监听 80 端口，如有请求跳转到 proxy_pass 对应的服务器上
-
 ### UFW - Uncomplicated Firewall:
-* ubuntu 默认就是这个，无需重新安装，且不开启也能正常访问到
-* debian 默认的 iptables 不好用
+* ubuntu 默认就是这个，无需重新安装，经测试不开启也能正常访问到
+* debian 默认的 iptables 不好用，安装ufw
 * install:
 
   ```bash
@@ -125,8 +125,7 @@
   ```
 
 ### MySQL:
-* Ubuntu 可以直接装
-* 但从 Debian 9 (Stretch) 开始，Debian 官方库中的 Mysql 就被 MariaDB 替代了
+* 从 Debian 9 (Stretch) 开始，Debian 官方库中的 Mysql 就被 MariaDB 替代了
 * 需要从官网下载 MySQL 配置包，再进行安装，查看最新配置包↓
 * [MySQL APT Repository](https://dev.mysql.com/downloads/repo/apt/)
 
@@ -137,6 +136,11 @@
   默认即可，选ok
 
   rm mysql-apt-config_0.8.25-1_all.deb
+  ```
+
+* Ubuntu 可以直接装
+
+  ```bash
   sudo apt update
   sudo apt install mysql-server
 
@@ -149,7 +153,9 @@
   mysql -u root -p
   ```
 
-* pwd: laphicet@2023
+* pwd: 
+  * laphicet@2023
+  * ubuntu: 默认为空，直接进入 `sudo mysql`
 * connect remotely:
   * default: Standard TCP/IP over SSH
     * SSH: username + pwd
