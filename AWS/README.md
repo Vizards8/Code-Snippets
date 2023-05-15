@@ -22,7 +22,7 @@
     * 右键 -> 属性 -> 安全 -> 高级：点击禁用继承，删除所有用户的访问权限
     * 点击安全 -> 编辑 -> 添加 -> 高级 -> 立即查找 -> Neng Zhou
      <!-- ![img](/Images/Permissions_too_open.png) -->
-     <img src="/Images/Permissions_too_open.png" width="500" >
+     <img src="/Images/Permissions_too_open.png" width="400" >
 
 * Connect: 
   * Instance -> Connect -> SSH client
