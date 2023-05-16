@@ -184,6 +184,14 @@
     
     * 服务器可操作，add inbound rules 3306，并且做如上修改
 
+* 内存占用过大的问题：
+  * Default: 400M
+  * performance_schema = off: 182.7M
+  * table_definition_cache = 400: 297M
+  * table_open_cache = 256: 330M
+  * 全部修改: 164M
+  * 可以只修改第一个
+
 ### Java:
 * ubuntu请用如下代码，debian不适用
 
