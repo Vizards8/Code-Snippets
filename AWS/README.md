@@ -189,6 +189,46 @@
   sudo update-alternatives --set java /usr/lib/jvm/jdk1.8.0_version/bin/java
   ```
 
+## Create a systemd service
+  * create xxx.service:
+
+    ```bash
+    cd /etc/systemd/system/
+    sudo nano xxx.service
+    ```
+
+    ```
+    [Unit]
+    Description=Heybadminton service
+    After=network.target
+    StartLimitBurst=10
+
+    [Service]
+    ExecStart=/home/ubuntu/Hey_Badminton/run.sh
+    Restart=always
+    RestartSec=30s
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+  * reload systemd
+
+    ```bash
+    sudo systemctl daemon-reload
+    sudo systemctl start xxx
+    sudo systemctl status xxx
+    ```
+
+  * start automatically on system boot
+
+    ```bash
+    sudo systemctl enable xxx
+    ```
+  
+  * log viewer:
+    * 'q': exit the viewer and return to the command line
+
 ## Issues
 * Regenerate key-pair may cause AWS to fail to connect
 * Using a web-based EC2 instance connection always fails
