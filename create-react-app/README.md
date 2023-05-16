@@ -31,7 +31,8 @@ npx create-react-app my-app
 ## add basic routes
 * `App.js`
 
-## 
+## solve CORS
+* `setupProxy.js`
 
 # Step 3
 
