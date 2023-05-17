@@ -1,4 +1,4 @@
-# AWS
+# AWS: Deploy MySQL and Java Backend
 
 ## Launch EC2 Instance
 * [AWS Console](https://aws.amazon.com/console/)
@@ -41,22 +41,6 @@
   ```
 
 ## Install
-
-### Node.js: 
-
-  ```bash
-  sudo apt update
-  sudo apt install nodejs
-  node -v
-  ```
-
-### npm:
-
-  ```bash
-  sudo apt update
-  sudo apt install npm
-  npm -v
-  ```
 
 ### git:
   
