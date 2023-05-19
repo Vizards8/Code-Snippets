@@ -34,6 +34,9 @@ npx create-react-app my-app
 ## solve CORS
 * `setupProxy.js`
 
+## add customize error pages
+* TBD
+
 # Step 3
 
 ## customize the web
