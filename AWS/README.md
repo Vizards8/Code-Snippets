@@ -31,6 +31,7 @@
      <img src="/Images/Permissions_too_open.png" width="400" >
 
 * Add password authentication:
+  * **一定要`sudo su`再改密码**
   
   ```bash
   sudo nano /etc/ssh/sshd_config
