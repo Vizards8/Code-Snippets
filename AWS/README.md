@@ -37,6 +37,7 @@
   PasswordAuthentication no -> PasswordAuthentication yes
   Ctrl + O (save) -> Enter (confirm filename) -> Ctrl + X (exit)
   sudo service sshd restart
+  sudo su
   sudo passwd [admin/ubuntu]
   ```
 
