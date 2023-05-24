@@ -79,6 +79,7 @@
   
   @SpringBootTest
   @RunWith(SpringRunner.class)
+  public class UserMapperTest {}
   ```
 
   * Junit 5 (默认是这个，想必这个好用吧):
@@ -87,6 +88,7 @@
   import org.junit.jupiter.api.Test;
   
   @SpringBootTest
+  public class UserMapperTest {}
   ```
 
 ## Tips
