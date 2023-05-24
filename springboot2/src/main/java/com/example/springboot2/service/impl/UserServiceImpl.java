@@ -38,4 +38,11 @@ public class UserServiceImpl implements UserService {
     public int deleteUserById(Long userId) {
         return userMapper.deleteUserById(userId);
     }
+
+    @Override
+    public boolean check(int a) {
+        if (a == 0) {
+            return false;
+        }
+    }
 }
