@@ -55,7 +55,7 @@
 1. 后端接收登录请求，查询是否登陆成功：
    * 成功：
      * 返回脱敏用户信息 `getSaftyUser()` 
-     * 并将此信息作为键值对，存在 `session` 中 `TODO`
+     * 并将此信息作为键值对，存在 `session` 中
    * 失败：返回失败code
 2. 后端创建 `getCurrentUser()` 的api：
    * 从 `session` 中取出键值对
@@ -63,3 +63,8 @@
    * 不存在：返回 `null`
 3. 前端访问时，使用后端 `getCurrentUser()` 确定是否登录，并保存在全局变量中
 4. 注销：后端从 `session` 中删除键值对
+5. 这里不用考虑 cookie 的部分，是因为这些由springboot自动完成了：
+   * springboot 自动为会话生成一个唯一标识符，名为 `JSESSIONID` cookie，发送给浏览器
+   * 浏览器后续请求时，会自动讲该 cookie 包含在请求头中
+   * 后端接收到请求，通过 `JSESSIONID` 的 cookie 识别会话，获取对应的会话数据
+   * 确保了正确关联用户的会话，不会混淆
