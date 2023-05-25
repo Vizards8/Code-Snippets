@@ -120,10 +120,12 @@
   * 在这个注解上 alt + enter -> Pull method to ...
 * 修改变量名: Refactor/Rename修改所有，不然还要改挨个改
 * 后端请求地址全部 + '/api'
-
 ```yml
 servlet:
   context-path: /api
 ```
-
 * F12 -> x-real-url 可以看到代理到的url
+
+* 讲前端
+
+* 
