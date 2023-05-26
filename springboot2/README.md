@@ -25,6 +25,10 @@
 
 ## Step 2
 
+### Add common:
+* ResponseResult
+* ErrorCode
+
 ### Implement the Backend Logic (Examples):
 
 * structure:
@@ -128,4 +132,20 @@ servlet:
 
 * 讲前端
 
-* 
+* 后端封装通过用返回对象
+* IDEA live template: 自定义代码块快捷键，例如：psvm这种
+* 封装全局异常处理
+  * 定义业务异常类：
+    * 相对于 java 的异常类，支持更多字段
+    * 自定义构造函数，更灵活 / 快捷的设置字段
+  * 编写全局异常处理器
+    作用：
+    * 捕获代码中所有的异常，内部消化，让前端得到更详细的业务报错 / 信息
+    * 同时屏蔽掉项目框架本身的异常（不暴露服务器内部状态）
+    * 集中处理，比如记录日志
+  * 实现：
+    * Spring AOP：在调用方法前后进行额外的处理
+* 后端实现：
+```java
+return ResponseResult.fail(ErrorCode.SESSION_TIME_OUT.getCode(), ErrorCode.SESSION_TIME_OUT.getMsg());
+```
