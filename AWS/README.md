@@ -187,6 +187,18 @@
   sudo update-alternatives --set java /usr/lib/jvm/jdk1.8.0_version/bin/java
   ```
 
+### Docker:
+* [docker docs](https://docs.docker.com/engine/install/ubuntu/)
+
+```bash
+sudo docker build -t heybadminton-back:v0.0.1 .
+sudo docker images
+sudo docker run -p 8080:8080 heybadminton-back:v0.0.1
+
+sudo docker ps -a
+sudo docker rm -f <containerid>
+```
+
 ## Create a systemd service
   * create xxx.service:
 
