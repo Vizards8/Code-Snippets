@@ -31,12 +31,14 @@
      <img src="/Images/Permissions_too_open.png" width="400" >
 
 * Add password authentication:
+  * **一定要`sudo su`再改密码**
   
   ```bash
   sudo nano /etc/ssh/sshd_config
   PasswordAuthentication no -> PasswordAuthentication yes
   Ctrl + O (save) -> Enter (confirm filename) -> Ctrl + X (exit)
   sudo service sshd restart
+  sudo su
   sudo passwd [admin/ubuntu]
   ```
 
