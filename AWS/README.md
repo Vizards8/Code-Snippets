@@ -196,6 +196,7 @@ sudo docker images
 sudo docker run -p 8080:8080 heybadminton-back:v0.0.1
 
 sudo docker ps -a
+sudo docker rmi -f <imageid>
 sudo docker rm -f <containerid>
 ```
 
