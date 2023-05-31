@@ -3,9 +3,11 @@
 ## Launch EC2 Instance
 * [AWS Console](https://aws.amazon.com/console/)
 * EC2 -> Instances
-* AMI: Debian or Ubuntu
+* AMI: Debian or Ubuntu (recommend)
 * Instance type: t2.micro
-* Key pair (login): RSA + .pem
+* Key pair (login) (optional): RSA + .pem
+* Network: Default
+* Storage: 30GB + gp3
 
 ## Modify EC2:
 * Security Groups: Edit inbound rules
@@ -16,21 +18,19 @@
 * Elastic IPs: 记得定时 release
 
 ## Connect to EC2:
-* Connect: 
+* Use key-pair: 需要改权限，比较麻烦
   * Instance -> Connect -> SSH client
   * `ssh -i aws.pem admin@ec2-44-204-85-207.compute-1.amazonaws.com`
-  * windows 使用key-pair操作，需要改权限，比较麻烦
-  * 建议add password authentication，使用账号密码连接
 
-* WARNING: "Permissions for 'xxxx.pem' are too open."
-  * Linux: `chmod 400 aws.pem`
-  * Windows:
-    * 右键 -> 属性 -> 安全 -> 高级：点击禁用继承，删除所有用户的访问权限
-    * 点击安全 -> 编辑 -> 添加 -> 高级 -> 立即查找 -> Neng Zhou
-     <!-- ![img](/Images/Permissions_too_open.png) -->
-     <img src="/Images/Permissions_too_open.png" width="400" >
+  * WARNING: "Permissions for 'xxxx.pem' are too open."
+    * Linux: `chmod 400 aws.pem`
+    * Windows:
+      * 右键 -> 属性 -> 安全 -> 高级：点击禁用继承，删除所有用户的访问权限
+      * 点击安全 -> 编辑 -> 添加 -> 高级 -> 立即查找 -> Neng Zhou
+       <!-- ![img](/Images/Permissions_too_open.png) -->
+       <img src="/Images/Permissions_too_open.png" width="400" >
 
-* Add password authentication:
+* Use password authentication (recommend):
   * **一定要`sudo su`再改密码**
   
   ```bash
@@ -71,7 +71,7 @@
 
   location / {
     # try_files $uri $uri/;
-    proxy_pass http://localhost:3000;
+    proxy_pass http://localhost:8080;
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
   }
@@ -147,13 +147,14 @@
     * SSH: username + pwd
     * MySQL: username + pwd
     * 服务器不可操作，那就用这个
-  * modify: Standard TCP/IP
+  * modified: Standard TCP/IP
     * modify config:
 
       ```bash
       sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 
-      add bind-address = 0.0.0.0 under [mysqld] tag
+      [mysqld]
+      bind-address = 0.0.0.0
 
       sudo service mysql restart
       ```
@@ -171,12 +172,17 @@
     * 服务器可操作，add inbound rules 3306，并且做如上修改
 
 * 内存占用过大的问题：
+
+  ```bash
+  sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+  ```
+
   * Default: 400M
-  * performance_schema = off: 182.7M
-  * table_definition_cache = 400: 297M
-  * table_open_cache = 256: 330M
+  * `performance_schema = off` -> 182.7M
+  * `table_definition_cache = 400` -> 297M
+  * `table_open_cache = 256` -> 330M
   * 全部修改: 164M
-  * 可以只修改第一个
+  * 可以只修改第一个，找不到就粘在最后一行
 
 ### Java:
 * ubuntu请用如下代码，debian不适用
@@ -223,6 +229,11 @@ sudo docker rm -f <containerid>
 
     [Install]
     WantedBy=multi-user.target
+    ```
+  * **记得给bash文件设置权限**
+
+    ```bash
+    chmod +x run.sh
     ```
 
   * reload systemd
