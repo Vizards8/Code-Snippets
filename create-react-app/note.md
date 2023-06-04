@@ -1,6 +1,7 @@
 # Google Map API
 
 ## Get API key
+
 * [Google Cloud Console](https://console.cloud.google.com/getting-started)
 * Create a project
 * Sidebar navigation, click on "`APIs & Services`"
@@ -11,12 +12,15 @@
 * `AIzaSyAxZU2Dc2ePb2sJz8fwSArjwyeTPs1vZA8`
 
 ## google-map-react
+
 * comment `</React.StrictMode>` in index.js if u want to display map
 
 # CSS
+
 * make it center: `margin: auto;`
 
 # Component
+
 * pass argument to Component
   * `const func = (props) => {}`
   * Then, `props.xxx`
@@ -25,22 +29,30 @@
   * 可以直接把整个页面搬过来使用
   * 并没有再次封装成新的组件 </>
   * 感觉并不太建议，需要熟练掌握文档阅读法 & 源码阅读法，要改很多东西
+* 条件渲染:
+
+  ```javascript
+  {item.id && (<></>)}
+  ```
 
 # Route: react-router-dom v6
+
 * Basic Route:
   * use `<Routes>` rather than`<Switch>`
   * [Official document](https://reactrouter.com/en/6.9.0/upgrading/v5#upgrade-all-switch-elements-to-routes)
 
-* Redirect: 
+* Redirect:
   * use `useNavigate` rather than `useHistory`
-  * ``` javascript
+
+    ``` javascript
     let navigate = useNavigate();
     navigate('success');
     ```
     
-* Dynamic URL: 
+* Dynamic URL:
   * `useParams`
-  * ```javascript
+
+    ```javascript
     const { id } = useParams();
     ```
 
@@ -49,9 +61,11 @@
   * `<Link`: just renders the new component
 
 # Window
+
 * refresh page: `window.location.reload();`
 
 # Register & Login
+
 1. 后端接收登录请求，查询是否登陆成功：
    * 成功：
      * 返回脱敏用户信息 `getSaftyUser()` 
