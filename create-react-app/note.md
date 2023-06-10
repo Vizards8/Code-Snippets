@@ -29,6 +29,16 @@
   * 可以直接把整个页面搬过来使用
   * 并没有再次封装成新的组件 </>
   * 感觉并不太建议，需要熟练掌握文档阅读法 & 源码阅读法，要改很多东西
+* antd button right align:
+
+  ```javascript
+  <Button
+    type="primary"
+    icon={<PlusOutlined />}
+    style={{ float: "right", margin: 8 }}
+  />
+  ```
+
 * 条件渲染:
 
   ```javascript
