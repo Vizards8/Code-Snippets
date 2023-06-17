@@ -18,6 +18,7 @@
 # CSS
 
 * make it center: `margin: auto;`
+* 右对齐：`style={{ float: "right", margin: 8 }}`
 
 # Component
 
@@ -29,21 +30,18 @@
   * 可以直接把整个页面搬过来使用
   * 并没有再次封装成新的组件 </>
   * 感觉并不太建议，需要熟练掌握文档阅读法 & 源码阅读法，要改很多东西
-* antd button right align:
-
-  ```javascript
-  <Button
-    type="primary"
-    icon={<PlusOutlined />}
-    style={{ float: "right", margin: 8 }}
-  />
-  ```
 
 * 条件渲染:
 
   ```javascript
   {item.id && (<></>)}
   ```
+
+# React
+
+* useEffect: 
+  * []: 什么也不监控，只触发一次
+  * 不写: 监控所有
 
 # Route: react-router-dom v6
 
