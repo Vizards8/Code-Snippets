@@ -1,6 +1,21 @@
 # AWS: Deploy MySQL and Java Backend
 
+- [AWS: Deploy MySQL and Java Backend](#aws-deploy-mysql-and-java-backend)
+  - [Launch EC2 Instance](#launch-ec2-instance)
+  - [Modify EC2:](#modify-ec2)
+  - [Connect to EC2:](#connect-to-ec2)
+  - [Install](#install)
+    - [git:](#git)
+    - [Nginx:](#nginx)
+    - [UFW - Uncomplicated Firewall:](#ufw---uncomplicated-firewall)
+    - [MySQL:](#mysql)
+    - [Java:](#java)
+    - [Docker:](#docker)
+  - [Create a systemd service](#create-a-systemd-service)
+  - [Issues](#issues)
+
 ## Launch EC2 Instance
+
 * [AWS Console](https://aws.amazon.com/console/)
 * EC2 -> Instances
 * AMI: Debian or Ubuntu (recommend)
@@ -10,6 +25,7 @@
 * Storage: 30GB + gp3
 
 ## Modify EC2:
+
 * Security Groups: Edit inbound rules
   * 其实都选 Custom TCP 就行，添加如下端口
   * HTTP 80: 0.0.0.0/0
@@ -18,6 +34,7 @@
 * Elastic IPs: 记得定时 release
 
 ## Connect to EC2:
+
 * Use key-pair: 需要改权限，比较麻烦
   * Instance -> Connect -> SSH client
   * `ssh -i aws.pem admin@ec2-44-204-85-207.compute-1.amazonaws.com`
@@ -53,6 +70,7 @@
   ```
 
 ### Nginx: 
+
 * 若服务器不可操作，只开放了80端口，通过 Nginx 反向代理
 * 原理：监听 80 端口，如有请求跳转到 proxy_pass 对应的服务器上
 * install: 
@@ -96,6 +114,7 @@
   ```
 
 ### UFW - Uncomplicated Firewall:
+
 * ubuntu 默认就是这个，无需重新安装，经测试不开启也能正常访问到
 * debian 默认的 iptables 不好用，安装ufw
 * install:
@@ -111,6 +130,7 @@
   ```
 
 ### MySQL:
+
 * 从 Debian 9 (Stretch) 开始，Debian 官方库中的 Mysql 就被 MariaDB 替代了
 * 需要从官网下载 MySQL 配置包，再进行安装，查看最新配置包↓
 * [MySQL APT Repository](https://dev.mysql.com/downloads/repo/apt/)
@@ -185,6 +205,7 @@
   * 可以只修改第一个，找不到就粘在最后一行
 
 ### Java:
+
 * ubuntu请用如下代码，debian不适用
 
   ```bash
@@ -196,7 +217,8 @@
   ```
 
 ### Docker:
-* [docker docs](https://docs.docker.com/engine/install/ubuntu/)
+
+* Install: [docker docs](https://docs.docker.com/engine/install/ubuntu/)
 
 ```bash
 sudo docker build -t heybadminton-back:v0.0.1 .
@@ -209,51 +231,53 @@ sudo docker rm -f <containerid>
 ```
 
 ## Create a systemd service
-  * create xxx.service:
 
-    ```bash
-    cd /etc/systemd/system/
-    sudo nano xxx.service
-    ```
+* create xxx.service:
 
-    ```
-    [Unit]
-    Description=Heybadminton service
-    After=network.target
-    StartLimitBurst=10
+  ```bash
+  cd /etc/systemd/system/
+  sudo nano xxx.service
+  ```
 
-    [Service]
-    ExecStart=/home/ubuntu/Hey_Badminton/run.sh
-    Restart=always
-    RestartSec=30s
+  ```
+  [Unit]
+  Description=Heybadminton service
+  After=network.target
+  StartLimitBurst=10
 
-    [Install]
-    WantedBy=multi-user.target
-    ```
-  * **记得给bash文件设置权限**
+  [Service]
+  ExecStart=/home/ubuntu/Hey_Badminton/run.sh
+  Restart=always
+  RestartSec=30s
 
-    ```bash
-    chmod +x run.sh
-    ```
+  [Install]
+  WantedBy=multi-user.target
+  ```
+* **记得给bash文件设置权限**
 
-  * reload systemd
+  ```bash
+  chmod +x run.sh
+  ```
 
-    ```bash
-    sudo systemctl daemon-reload
-    sudo systemctl start xxx
-    sudo systemctl status xxx
-    ```
+* reload systemd
 
-  * start automatically on system boot
+  ```bash
+  sudo systemctl daemon-reload
+  sudo systemctl start xxx
+  sudo systemctl status xxx
+  ```
 
-    ```bash
-    sudo systemctl enable xxx
-    ```
-  
-  * log viewer:
-    * 'q': exit the viewer and return to the command line
+* start automatically on system boot
+
+  ```bash
+  sudo systemctl enable xxx
+  ```
+
+* log viewer:
+  * 'q': exit the viewer and return to the command line
 
 ## Issues
+
 * Regenerate key-pair may cause AWS to fail to connect
 * Using a web-based EC2 instance connection always fails
   * no such issue for ubuntu
