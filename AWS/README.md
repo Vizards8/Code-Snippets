@@ -14,6 +14,7 @@
   - [Nodejs](#nodejs)
   - [Create a systemd service](#create-a-systemd-service)
   - [Issues](#issues)
+  - [Linux](#linux)
 
 ## Launch EC2 Instance
 
@@ -300,3 +301,10 @@ sudo docker rm -f <containerid>
 * Using a web-based EC2 instance connection always fails
   * no such issue for ubuntu
 * If missing `sudo ufw allow ssh`, you may lose your EC2 instance forever
+
+## Linux
+
+* top
+* netstat -a
+* netstat -ap
+* netstat -ap | grep 8080
