@@ -11,6 +11,7 @@
     - [MySQL:](#mysql)
     - [Java:](#java)
     - [Docker:](#docker)
+  - [Nodejs](#nodejs)
   - [Create a systemd service](#create-a-systemd-service)
   - [Issues](#issues)
 
@@ -221,14 +222,31 @@
 * Install: [docker docs](https://docs.docker.com/engine/install/ubuntu/)
 
 ```bash
-sudo docker build -t heybadminton-back:v0.0.1 .
+sudo docker build -t name:v0.0.1 .
 sudo docker images
-sudo docker run -p 8080:8080 heybadminton-back:v0.0.1
+sudo docker run -p 8080:8080 name:v0.0.1
 
 sudo docker ps -a
 sudo docker rmi -f <imageid>
 sudo docker rm -f <containerid>
 ```
+
+* 其他命令：
+
+  * 删除中间容器：(默认构建成功就会删除)
+
+    ```bash
+    sudo docker build --force-rm=true -t name:v0.0.1 .
+    ```
+
+* Docker Compose:
+  * 批量构建镜像并启动，多写一个 `docker-compose.yml`
+  * https://blog.csdn.net/qq_26545503/article/details/126707380
+  * https://blog.csdn.net/yanzi920403/article/details/119345898
+
+## Nodejs
+
+* 
 
 ## Create a systemd service
 
