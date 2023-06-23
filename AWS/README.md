@@ -227,6 +227,7 @@ sudo docker build -t name:v0.0.1 .
 sudo docker images
 sudo docker run -p 8080:8080 name:v0.0.1
 
+sudo docker run -it name:v0.0.1 bash
 sudo docker ps -a
 sudo docker rmi -f <imageid>
 sudo docker rm -f <containerid>
