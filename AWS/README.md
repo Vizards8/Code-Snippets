@@ -227,7 +227,6 @@ sudo docker build -t name:v0.0.1 .
 sudo docker images
 sudo docker run -p 8080:8080 name:v0.0.1
 
-sudo docker run -it name:v0.0.1 bash
 sudo docker ps -a
 sudo docker rmi -f <imageid>
 sudo docker rm -f <containerid>
@@ -235,11 +234,37 @@ sudo docker rm -f <containerid>
 
 * 其他命令：
 
+  * 交互模式启动容器：
+
+    ```bash
+    sudo docker run -it name:v0.0.1 bash
+    ```
+
+  * 后台启动容器：
+
+    ```bash
+    sudo docker run -d --name [name] name:v0.0.1
+    ```
+
+  * 查看日志输出，-f 跟踪输出：
+
+    ```bash
+    docker logs -f [containerId or NAME]
+    ```
+  
+  * 不使用缓存构建容器：
+
+    ```bash
+    sudo docker build --no-cache -t name:v0.0.1 .
+    ```
+
   * 删除中间容器：(默认构建成功就会删除)
 
     ```bash
     sudo docker build --force-rm=true -t name:v0.0.1 .
     ```
+
+  * 
 
 * Docker Compose:
   * 批量构建镜像并启动，多写一个 `docker-compose.yml`
@@ -306,6 +331,9 @@ sudo docker rm -f <containerid>
 ## Linux
 
 * top
-* netstat -a
-* netstat -ap
-* netstat -ap | grep 8080
+* netstat:
+  * -a: 显示所有选项
+  * -p: 显示程序名
+  * 查看特定端口：netstat -ap | grep 8080
+* 查看特定进程：ps aux | grep nacos
+* 停止进程，进程号是前面那个：kill -9 <进程号>
