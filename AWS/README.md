@@ -162,7 +162,7 @@
   ```
 
 * pwd: 
-  * laphicet@2023
+  * root@123456
   * ubuntu: 默认为空，直接进入 `sudo mysql`
 * connect remotely:
   * default: Standard TCP/IP over SSH
@@ -170,6 +170,7 @@
     * MySQL: username + pwd
     * 服务器不可操作，那就用这个
   * modified: Standard TCP/IP
+    * 以下操作可以通过 shell 脚本替代：[mysql_init.sh](mysql_init.sh)
     * modify config:
 
       ```bash
@@ -184,14 +185,15 @@
     * modify MySQL:
 
       ```mysql
-      CREATE USER 'laphi'@'localhost' IDENTIFIED BY 'laphicet@2023';
+      CREATE USER 'root'@'localhost' IDENTIFIED BY 'root@123456';
       GRANT ALL PRIVILEGES ON *.* TO 'laphi'@'localhost' WITH GRANT OPTION;
-      CREATE USER 'laphi'@'%' IDENTIFIED BY 'laphicet@2023';
+      CREATE USER 'root'@'%' IDENTIFIED BY 'root@123456';
       GRANT ALL PRIVILEGES ON *.* TO 'laphi'@'%' WITH GRANT OPTION;
       FLUSH PRIVILEGES;
       ```
     
     * 服务器可操作，add inbound rules 3306，并且做如上修改
+    * 简单密码时，千万不要开放 3306 端口，以免被盗
 
 * 内存占用过大的问题：
 
