@@ -9,12 +9,16 @@
     - [Nginx:](#nginx)
     - [UFW - Uncomplicated Firewall:](#ufw---uncomplicated-firewall)
     - [MySQL:](#mysql)
+      - [Using Docker:](#using-docker)
     - [Java:](#java)
+    - [Maven:](#maven)
     - [Docker:](#docker)
-  - [Nodejs](#nodejs)
-  - [Create a systemd service](#create-a-systemd-service)
+  - [Nodejs, npm, and Yarn](#nodejs-npm-and-yarn)
+  - [Nacos](#nacos)
   - [Issues](#issues)
   - [Linux](#linux)
+    - [Systemd service](#systemd-service)
+    - [Commands](#commands)
 
 ## Launch EC2 Instance
 
@@ -171,6 +175,11 @@
     * 服务器不可操作，那就用这个
   * modified: Standard TCP/IP
     * 以下操作可以通过 shell 脚本替代：[mysql_init.sh](mysql_init.sh)
+
+      ```bash
+      sudo sh mysql_init.sh
+      ```
+
     * modify config:
 
       ```bash
@@ -208,6 +217,20 @@
   * 全部修改: 164M
   * 可以只修改第一个，找不到就粘在最后一行
 
+* 运行初始化脚本：
+
+  ```bash
+  sudo mysql -u root -p < init.sql 
+  ```
+
+#### Using Docker:
+
+* command:
+
+```bash
+sudo docker run -d -p 3306:3306 --name mysql8 -e MYSQL_ROOT_PASSWORD=123456 -v [xxx/create_table.sql]:/docker-entrypoint-initdb.d/create_table.sql mysql:8
+```
+
 ### Java:
 
 * ubuntu请用如下代码，debian不适用
@@ -219,6 +242,14 @@
   sudo update-alternatives --config java
   sudo update-alternatives --set java /usr/lib/jvm/jdk1.8.0_version/bin/java
   ```
+
+### Maven:
+
+```bash
+sudo apt update
+sudo apt install maven
+mvn -version
+```
 
 ### Docker:
 
@@ -273,11 +304,50 @@ sudo docker rm -f <containerid>
   * https://blog.csdn.net/qq_26545503/article/details/126707380
   * https://blog.csdn.net/yanzi920403/article/details/119345898
 
-## Nodejs
+## Nodejs, npm, and Yarn
 
-* 
+```bash
+sudo apt-get update
+sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+sudo apt-get install -y nodejs
+sudo npm install -g yarn
+node -v
+npm -v
+yarn -v
+```
 
-## Create a systemd service
+## Nacos
+
+* Ubuntu Install:
+
+```bash
+wget https://github.com/alibaba/nacos/releases/download/2.2.3/nacos-server-2.2.3.tar.gz
+tar -xvf nacos-server-2.2.3.tar.gz
+rm nacos-server-2.2.3.tar.gz
+```
+
+* Start Server
+
+```bash
+bash ./nacos/bin/startup.sh -m standalone
+```
+
+* Shutdown Server
+
+```bash
+bash ./nacos/bin/shutdown.sh
+```
+
+## Issues
+
+* Regenerate key-pair may cause AWS to fail to connect
+* Using a web-based EC2 instance connection always fails
+  * no such issue for ubuntu
+* If missing `sudo ufw allow ssh`, you may lose your EC2 instance forever
+
+## Linux
+
+### Systemd service
 
 * create xxx.service:
 
@@ -323,19 +393,12 @@ sudo docker rm -f <containerid>
 * log viewer:
   * 'q': exit the viewer and return to the command line
 
-## Issues
+### Commands
 
-* Regenerate key-pair may cause AWS to fail to connect
-* Using a web-based EC2 instance connection always fails
-  * no such issue for ubuntu
-* If missing `sudo ufw allow ssh`, you may lose your EC2 instance forever
-
-## Linux
-
-* top
-* netstat:
-  * -a: 显示所有选项
-  * -p: 显示程序名
-  * 查看特定端口：netstat -ap | grep 8080
-* 查看特定进程：ps aux | grep nacos
-* 停止进程，进程号是前面那个：kill -9 <进程号>
+  * top
+  * netstat:
+    * -a: 显示所有选项
+    * -p: 显示程序名
+    * 查看特定端口：netstat -ap | grep 8080
+  * 查看特定进程：ps aux | grep nacos
+  * 停止进程，进程号是前面那个：kill -9 <进程号>
