@@ -279,6 +279,30 @@ sudo docker rm -f <containerid>
     sudo docker run -d --name [name] name:v0.0.1
     ```
 
+  * 删除所有停止的容器:
+
+    ```bash
+    docker container prune -f
+    ```
+
+  * 停止所有容器：
+
+    ```bash
+    docker stop $(docker ps -aq)
+    ```
+  
+  * 删除所有容器:
+
+    ```bash
+    docker rm $(docker ps -aq)
+    ```
+
+  * 删除所有的镜像:
+
+    ```bash
+    docker rmi $(docker images -q)
+    ```
+
   * 查看日志输出，-f 跟踪输出：
 
     ```bash
