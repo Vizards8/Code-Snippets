@@ -390,6 +390,10 @@ bash ./nacos/bin/shutdown.sh
   sudo systemctl enable xxx
   ```
 
+  ```bash
+  sudo systemctl disable xxx
+  ```
+
 * log viewer:
   * 'q': exit the viewer and return to the command line
 
