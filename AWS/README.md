@@ -282,31 +282,31 @@ sudo docker rm -f <containerid>
   * 删除所有停止的容器:
 
     ```bash
-    docker container prune -f
+    sudo docker container prune -f
     ```
 
   * 停止所有容器：
 
     ```bash
-    docker stop $(docker ps -aq)
+    sudo docker stop $(docker ps -aq)
     ```
   
   * 删除所有容器:
 
     ```bash
-    docker rm $(docker ps -aq)
+    sudo docker rm $(docker ps -aq)
     ```
 
   * 删除所有的镜像:
 
     ```bash
-    docker rmi $(docker images -q)
+    sudo docker rmi $(docker images -q)
     ```
 
   * 查看日志输出，-f 跟踪输出：
 
     ```bash
-    docker logs -f [containerId or NAME]
+    sudo docker logs -f [containerId or NAME]
     ```
   
   * 不使用缓存构建容器：
