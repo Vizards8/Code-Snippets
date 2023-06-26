@@ -16,6 +16,8 @@
     - [Nodejs, npm, and Yarn](#nodejs-npm-and-yarn)
     - [Nacos](#nacos)
       - [Using Docker](#using-docker-1)
+    - [Ping](#ping)
+    - [Telnet](#telnet)
   - [Issues](#issues)
   - [Linux](#linux)
     - [Systemd service](#systemd-service)
@@ -379,6 +381,20 @@ bash ./nacos/bin/shutdown.sh
 
 ```bash
 sudo docker run -d -p 8848:8848  -p 9848:9848 -p 9849:9849 --privileged=true -e JVM_XMS=256m -e JVM_XMX=256m -e JVM_XMN=128m -e MODE=standalone nacos/nacos-server:v2.2.3
+```
+
+### Ping
+
+```bash
+apt-get update
+apt-get install iputils-ping
+```
+
+### Telnet
+
+```bash
+apt-get update
+apt-get install telnet
 ```
 
 ## Issues
