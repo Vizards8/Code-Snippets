@@ -289,19 +289,19 @@ sudo docker rm -f <containerid>
   * 停止所有容器：
 
     ```bash
-    sudo docker stop $(docker ps -aq)
+    sudo docker stop $(sudo docker ps -aq)
     ```
   
   * 删除所有容器:
 
     ```bash
-    sudo docker rm $(docker ps -aq)
+    sudo docker rm $(sudo docker ps -aq)
     ```
 
   * 删除所有的镜像:
 
     ```bash
-    sudo docker rmi $(docker images -q)
+    sudo docker rmi $(sudo docker images -q)
     ```
 
   * 查看日志输出，-f 跟踪输出：
