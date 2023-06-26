@@ -485,5 +485,6 @@ curl -v ip:port
     * -a: 显示所有选项
     * -p: 显示程序名
     * 查看特定端口：netstat -ap | grep 8080
+    * Tcp类型的端口：netstat -ntlp
   * 查看特定进程：ps aux | grep nacos
   * 停止进程，进程号是前面那个：kill -9 <进程号>
