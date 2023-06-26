@@ -18,6 +18,7 @@
       - [Using Docker](#using-docker-1)
     - [Ping](#ping)
     - [Telnet](#telnet)
+    - [Curl](#curl)
   - [Issues](#issues)
   - [Linux](#linux)
     - [Systemd service](#systemd-service)
@@ -401,6 +402,14 @@ apt-get install telnet
 
 ```bash
 telnet ip port
+```
+
+### Curl
+
+* command
+
+```bash
+curl -v ip:port
 ```
 
 ## Issues
