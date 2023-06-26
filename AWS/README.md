@@ -332,6 +332,11 @@ sudo docker rm -f <containerid>
     ```bash
     docker-compose up -d
     ```
+  * 进入交互式bash
+
+    ```bash
+    docker-compose exec <id> bash
+    ```
 
 ## Nodejs, npm, and Yarn
 
