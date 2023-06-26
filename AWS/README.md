@@ -334,12 +334,19 @@ sudo docker rm -f <containerid>
   * 启动：
 
     ```bash
-    docker-compose up -d
+    sudo docker compose up -d
     ```
+
+  * 单个启动：
+
+    ```bash
+    sudo docker compose up -d [name]
+    ```
+
   * 进入交互式bash
 
     ```bash
-    docker-compose exec <id> bash
+    sudo docker compose exec <id> bash
     ```
 
 ### Nodejs, npm, and Yarn
