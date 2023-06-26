@@ -327,6 +327,11 @@ sudo docker rm -f <containerid>
   * 批量构建镜像并启动，多写一个 `docker-compose.yml`
   * https://blog.csdn.net/qq_26545503/article/details/126707380
   * https://blog.csdn.net/yanzi920403/article/details/119345898
+  * 启动：
+
+    ```bash
+    docker-compose up -d
+    ```
 
 ## Nodejs, npm, and Yarn
 
