@@ -397,6 +397,12 @@ apt-get update
 apt-get install telnet
 ```
 
+* Usage
+
+```bash
+telnet ip port
+```
+
 ## Issues
 
 * Regenerate key-pair may cause AWS to fail to connect
