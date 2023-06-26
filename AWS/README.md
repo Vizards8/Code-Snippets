@@ -13,8 +13,9 @@
     - [Java:](#java)
     - [Maven:](#maven)
     - [Docker:](#docker)
-  - [Nodejs, npm, and Yarn](#nodejs-npm-and-yarn)
-  - [Nacos](#nacos)
+    - [Nodejs, npm, and Yarn](#nodejs-npm-and-yarn)
+    - [Nacos](#nacos)
+      - [Using Docker](#using-docker-1)
   - [Issues](#issues)
   - [Linux](#linux)
     - [Systemd service](#systemd-service)
@@ -228,7 +229,7 @@
 * command:
 
 ```bash
-sudo docker run -d -p 3306:3306 --name mysql8 -e MYSQL_ROOT_PASSWORD=123456 -v [xxx/create_table.sql]:/docker-entrypoint-initdb.d/create_table.sql mysql:8
+sudo docker run -d -p 3306:3306 --name mysql8 -e MYSQL_ROOT_PASSWORD=123456 -v /etc/localtime:/etc/localtime -v /etc/timezone:/etc/timezone -v [xxx/create_table.sql]:/docker-entrypoint-initdb.d/create_table.sql mysql:8
 ```
 
 ### Java:
@@ -338,7 +339,7 @@ sudo docker rm -f <containerid>
     docker-compose exec <id> bash
     ```
 
-## Nodejs, npm, and Yarn
+### Nodejs, npm, and Yarn
 
 ```bash
 sudo apt-get update
@@ -350,7 +351,7 @@ npm -v
 yarn -v
 ```
 
-## Nacos
+### Nacos
 
 * Ubuntu Install:
 
@@ -370,6 +371,14 @@ bash ./nacos/bin/startup.sh -m standalone
 
 ```bash
 bash ./nacos/bin/shutdown.sh
+```
+
+#### Using Docker
+
+* command:
+
+```bash
+sudo docker run -d -p 8848:8848  -p 9848:9848 -p 9849:9849 --privileged=true -e JVM_XMS=256m -e JVM_XMX=256m -e JVM_XMN=128m -e MODE=standalone nacos/nacos-server:v2.2.3
 ```
 
 ## Issues
