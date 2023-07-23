@@ -11,3 +11,7 @@ git config core.sparseCheckout true
 echo "react/*" >> .git/info/sparse-checkout
 git pull origin master
 ```
+
+## Small tool to delete deployment tab in Github
+
+[remove_deployments_tab.py](Tools/remove_deployments_tab.py)
