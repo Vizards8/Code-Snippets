@@ -47,6 +47,12 @@ See https://stackoverflow.com/a/61272173/9943464 for more information.
 Licensed under the Unlicensed license (see the beginning of the file)
 """)
 
+'''
+1. use debug mode to run
+2. type in owner/REPO: Vizards8/Napi-hub
+3. type in token: Github -> Settings -> developer settings -> tokens
+'''
+
 OWNER = input('OWNER/repo => ')
 if '/' in OWNER:
     OWNER, REPO = OWNER.split('/')
