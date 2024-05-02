@@ -7,12 +7,17 @@
 ## create react cli
 
 ```
-npx create-react-app my-app
+npm create vite@latest my-app
+
+Choose React
+
+Choose TypeScript + SWC
 ```
 
+> SWC (Speed Web Compiler): a JavaScript/TypeScript compiler written in Rust. Ensures fast compilation times.
+
 ## delete some files
-* only keep: `App.js & App.css & index.js & index.css`
-* modify them, remove deleted parts
+* Keep: `App.tsx & App.css & main.tsx & index.css`
 
 # Step 2
 
